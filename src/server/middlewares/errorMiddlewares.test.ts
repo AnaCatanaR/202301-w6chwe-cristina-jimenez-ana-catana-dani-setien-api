@@ -1,6 +1,6 @@
 import { CustomError } from "../../CustomError/CustomError";
 import { type Request, type NextFunction, type Response } from "express";
-import generalError from "./generalError/generalError";
+import generalError from "./generalError/generalError.js";
 import {
   mockJson,
   mockNext,
@@ -8,7 +8,7 @@ import {
   mockResponse,
   mockStatus,
 } from "../../mocks/robotsMocks";
-import { notFoundError } from "./errorMiddlewares";
+import { notFoundError } from "./errorMiddlewares.js";
 
 describe("Given a generalError function", () => {
   describe("When it receives an error with status 500", () => {

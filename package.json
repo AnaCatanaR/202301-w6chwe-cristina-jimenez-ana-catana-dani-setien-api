@@ -2,6 +2,7 @@
   "name": "202301-w6chwe-cristina-jimenez-ana-catana-dani-setien-api",
   "version": "1.0.0",
   "description": "robots-CRUD-app",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",

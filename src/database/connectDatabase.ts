@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
-const connectToDatabase = async () => {
+const connectDatabase = async () => {
   try {
     await mongoose.connect(process.env.ROBOTS_DATABASE!);
-  } catch (error) {}
+  } catch (error) {
+    throw new Error("Error connecting to the database");
+  }
 };
 
-export default connectToDatabase;
+export default connectDatabase;

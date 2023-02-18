@@ -1,5 +1,4 @@
 import "./loadEnvironments.js";
-import "./middlewares/middlewares.js";
 import "./server/index.js";
 import { startServer } from "./server/startServer.js";
 import connectDatabase from "./database/connectDatabase.js";

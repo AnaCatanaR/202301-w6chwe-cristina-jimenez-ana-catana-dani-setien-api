@@ -1,4 +1,4 @@
-import { type NextFunction, type Request, type Response } from "express";
+import { type Response } from "express";
 import { Robot } from "../../database/models/robotSchema";
 import {
   mockNext,
@@ -15,11 +15,7 @@ describe("Given the getRobots controller", () => {
 
       Robot.find = jest.fn().mockReturnValue({});
 
-      await getRobots(
-        mockRequest as Request,
-        mockResponse as Response,
-        mockNext as NextFunction
-      );
+      await getRobots(mockRequest, mockResponse as Response, mockNext);
 
       expect(mockStatus).toHaveBeenCalledWith(expectedStatusCode);
     });
@@ -36,11 +32,7 @@ describe("Given the getRobots controller", () => {
         json: mockJson,
       };
 
-      await getRobots(
-        mockRequest as Request,
-        mockResponse as Response,
-        mockNext as NextFunction
-      );
+      await getRobots(mockRequest, mockResponse as Response, mockNext);
 
       expect(mockJson).toHaveBeenCalledWith(expectedEmptyObject);
     });

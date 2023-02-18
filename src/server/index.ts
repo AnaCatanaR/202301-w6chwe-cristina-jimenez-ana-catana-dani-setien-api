@@ -1,5 +1,5 @@
 import morgan from "morgan";
-import { app } from "./startServer.js";
+import app from "./startServer.js";
 import express from "express";
 import { robotsRouter } from "./router/robotsRouter.js";
 import { notFoundError } from "./middlewares/errorMiddlewares.js";

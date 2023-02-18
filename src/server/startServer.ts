@@ -2,7 +2,8 @@ import express from "express";
 import chalk from "chalk";
 import { CustomError } from "../CustomError/CustomError.js";
 
-export const app = express();
+const app = express();
+app.disable("x-powered-by");
 
 export const startServer = async (port: number) =>
   new Promise((resolve, reject) => {
@@ -22,3 +23,5 @@ export const startServer = async (port: number) =>
       reject(new CustomError(errorMessage, 500, "Our server is not online."));
     });
   });
+
+export default app;

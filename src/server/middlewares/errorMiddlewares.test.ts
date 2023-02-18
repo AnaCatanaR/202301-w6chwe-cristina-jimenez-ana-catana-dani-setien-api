@@ -1,14 +1,16 @@
 import { CustomError } from "../../CustomError/CustomError";
-import { type Request, type NextFunction, type Response } from "express";
+import { type Response } from "express";
 import generalError from "./generalError/generalError";
 import {
   mockJson,
   mockNext,
   mockRequest,
-  mockResponse,
+  mockResponse as res,
   mockStatus,
 } from "../../mocks/robotsMocks";
 import { notFoundError } from "./errorMiddlewares";
+
+const mockResponse = res as Response;
 
 describe("Given a generalError function", () => {
   describe("When it receives an error with status 500", () => {
@@ -16,7 +18,7 @@ describe("Given a generalError function", () => {
       const statusCode = 500;
       const mockError = new CustomError("", statusCode, "");
 
-      generalError(mockError, mockRequest, mockResponse as Response, mockNext);
+      generalError(mockError, mockRequest, mockResponse, mockNext);
 
       expect(mockStatus).toHaveBeenCalledWith(statusCode);
     });
@@ -27,7 +29,7 @@ describe("Given a generalError function", () => {
       const errorMessage = "This is General Pete speaking";
       const mockError = new CustomError("", 400, errorMessage);
 
-      generalError(mockError, mockRequest, mockResponse as Response, mockNext);
+      generalError(mockError, mockRequest, mockResponse, mockNext);
 
       const expectedErrorWithMessage = { error: errorMessage };
 
@@ -39,7 +41,7 @@ describe("Given a generalError function", () => {
 describe("Given a notFoundError function", () => {
   describe("When it is called", () => {
     test("Then it should pass down an error with status 404", () => {
-      notFoundError(mockRequest, mockResponse as Response, mockNext);
+      notFoundError(mockRequest, mockResponse, mockNext);
 
       const expectedError = new CustomError(
         "An unhandled response has arrived",

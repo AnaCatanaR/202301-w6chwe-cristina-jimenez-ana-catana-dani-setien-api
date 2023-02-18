@@ -16,12 +16,7 @@ describe("Given a generalError function", () => {
       const statusCode = 500;
       const mockError = new CustomError("", statusCode, "");
 
-      generalError(
-        mockError,
-        mockRequest as Request,
-        mockResponse as Response,
-        mockNext as NextFunction
-      );
+      generalError(mockError, mockRequest, mockResponse as Response, mockNext);
 
       expect(mockStatus).toHaveBeenCalledWith(statusCode);
     });
@@ -32,12 +27,7 @@ describe("Given a generalError function", () => {
       const errorMessage = "This is General Pete speaking";
       const mockError = new CustomError("", 400, errorMessage);
 
-      generalError(
-        mockError,
-        mockRequest as Request,
-        mockResponse as Response,
-        mockNext as NextFunction
-      );
+      generalError(mockError, mockRequest, mockResponse as Response, mockNext);
 
       const expectedErrorWithMessage = { error: errorMessage };
 
@@ -49,11 +39,7 @@ describe("Given a generalError function", () => {
 describe("Given a notFoundError function", () => {
   describe("When it is called", () => {
     test("Then it should pass down an error with status 404", () => {
-      notFoundError(
-        mockRequest as Request,
-        mockResponse as Response,
-        mockNext as NextFunction
-      );
+      notFoundError(mockRequest, mockResponse as Response, mockNext);
 
       const expectedError = new CustomError(
         "An unhandled response has arrived",

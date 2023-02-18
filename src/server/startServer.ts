@@ -4,6 +4,8 @@ import chalk from "chalk";
 import { CustomError } from "../CustomError/CustomError.js";
 
 export const app = express();
+app.disable("x-powered-by");
+
 export const debug = createDebug(":robots:startServer");
 
 export const startServer = async (port: number) =>

@@ -6,6 +6,7 @@ import { Robot } from "../../database/models/robotSchema.js";
 const getRobots = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const robots = await Robot.find();
+
     res.status(200).json({ robots });
   } catch (error) {
     const getRobotsError = new CustomError(

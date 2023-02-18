@@ -14,6 +14,13 @@ module.exports = {
           "error",
           "interface",
         ],
+        "no-implicit-coercion": "off",
+      },
+    },
+    {
+      files: ["src/**/models/**/*.ts"],
+      rules: {
+        "@typescript-eslint/naming-convention": "off",
       },
     },
   ],
@@ -21,7 +28,5 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  rules: {
-    "no-implicit-coercion": "off",
-  },
+  rules: {},
 };

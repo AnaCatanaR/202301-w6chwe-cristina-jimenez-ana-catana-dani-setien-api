@@ -1,8 +1,7 @@
 import "./loadEnvironments.js";
-import "./middlewares/middlewares.js";
+import "./server/middlewares/middlewares.js";
+import { startServer } from "./server/startServer.js";
 
-import { startServer } from "./listeners/startServer.js";
+const port = process.env.PORT ?? 4001;
 
-export const port = process.env.PORT ?? 4001;
-
-startServer(+port);
+await startServer(+port);

@@ -1,7 +1,7 @@
 import express from "express";
 import createDebug from "debug";
 import chalk from "chalk";
-import type CustomError from "../CustomError/CustomError.js";
+import { CustomError } from "../CustomError/CustomError.js";
 
 export const app = express();
 export const debug = createDebug(":robots:startServer");
@@ -22,6 +22,6 @@ export const startServer = async (port: number) =>
         )}.`;
       }
 
-      reject(new Error(errorMessage));
+      reject(new CustomError(errorMessage, 500, "Our server is not online."));
     });
   });

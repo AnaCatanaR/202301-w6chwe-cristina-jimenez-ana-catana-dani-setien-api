@@ -9,6 +9,7 @@ module.exports = {
       extends: ["xo-typescript", "prettier"],
       files: ["*.ts", "*.tsx"],
       rules: {
+        "new-cap": "off",
         "@typescript-eslint/consistent-type-definitions": [
           "error",
           "interface",

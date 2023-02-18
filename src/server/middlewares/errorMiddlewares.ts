@@ -1,15 +1,16 @@
-import { debug } from "console";
 import { type NextFunction, type Request, type Response } from "express";
-import type CustomError from "../../CustomError/CustomError.js";
+import { CustomError } from "../../CustomError/CustomError";
 
-const generalError = (
-  error: CustomError,
+export const notFoundError = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  debug(error.message);
-  res.status(error.statusCode).json({ error: error.publicMessage });
-};
+  const error = new CustomError(
+    "An unhandled response has arrived",
+    404,
+    "Not found."
+  );
 
-export default generalError;
+  next(error);
+};

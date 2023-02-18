@@ -4,7 +4,7 @@ import chalk from "chalk";
 import type CustomError from "../CustomError/CustomError.js";
 
 export const app = express();
-export const debug = createDebug(":robots:startServer");
+const debug = createDebug(":robots:startServer");
 
 export const startServer = async (port: number) =>
   new Promise((resolve, reject) => {

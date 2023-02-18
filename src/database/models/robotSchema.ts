@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const robotSchema = new mongoose.Schema({
+export const robotSchema = new mongoose.Schema({
   name: String,
   image: String,
   attributes: {
@@ -9,3 +9,5 @@ const robotSchema = new mongoose.Schema({
     creationDate: String,
   },
 });
+
+export const Robot = mongoose.model("robot", robotSchema, "robots");

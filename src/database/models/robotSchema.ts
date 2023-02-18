@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const robotsSchema = new mongoose.Schema({
+const robotSchema = new mongoose.Schema({
   name: String,
   image: String,
   attributes: {

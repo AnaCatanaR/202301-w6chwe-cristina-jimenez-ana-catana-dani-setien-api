@@ -3,6 +3,9 @@ import { type Request, type Response } from "express";
 import { CustomError } from "../../CustomError/CustomError.js";
 import { Robot } from "../../database/models/robotSchema.js";
 import { type RobotStructure } from "../../types.js";
+import createDebug from "debug";
+
+const debug = createDebug("robots:controller");
 
 export const getRobots = async (
   req: Request,
@@ -72,6 +75,27 @@ export const createRobot = async (
       error.message as string,
       500,
       "Error creating the robot"
+    );
+    next(createRobotError);
+  }
+};
+
+export const deleteRobotById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { idRobot } = req.params;
+
+    await Robot.findByIdAndDelete(idRobot);
+
+    res.status(200).json({});
+  } catch (error) {
+    const createRobotError = new CustomError(
+      error.message as string,
+      500,
+      "Error deleting the robot"
     );
     next(createRobotError);
   }

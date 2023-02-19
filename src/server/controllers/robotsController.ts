@@ -88,9 +88,9 @@ export const deleteRobotById = async (
   try {
     const { idRobot } = req.params;
 
-    const robot = await Robot.findByIdAndDelete(idRobot);
+    await Robot.findByIdAndDelete(idRobot);
 
-    res.status(200).json({ robot });
+    res.status(200).json({});
   } catch (error) {
     const createRobotError = new CustomError(
       error.message as string,

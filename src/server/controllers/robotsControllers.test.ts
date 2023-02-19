@@ -126,29 +126,23 @@ describe("Given a deleteRobotById function", () => {
       expect(mockResponse.status).toHaveBeenCalledWith(expectedReturnedStatus);
     });
 
-    test("Then it should call its json method with property newRobot assigned to an empty object", async () => {
+    test("Then it should call its json method with an empty object", async () => {
+      const mockedRobotId = "hu-ha";
+
       const mockStatus = jest.fn().mockReturnThis();
       const mockJson = jest.fn().mockResolvedValue({});
-      const mockRequest = {
-        body: {
-          name: "",
-          image: "",
-          attributes: { creationDate: "", speed: 1, resistance: 1 },
-        },
-      };
+      const mockedRequest = {
+        params: { robotId: mockedRobotId },
+      } as Partial<Request>;
+
       const mockResponse: Partial<Response> = {
         status: mockStatus,
         json: mockJson,
       };
-      const expectedEmptyObject = { newRobot: {} };
-      Robot.create = jest.fn().mockReturnValue({});
+      const expectedEmptyObject = {};
 
-      await createRobot(
-        mockRequest as Request<
-          Record<string, unknown>,
-          Record<string, unknown>,
-          RobotStructure
-        >,
+      await deleteRobotById(
+        mockedRequest as Request,
         mockResponse as Response,
         mockNext
       );

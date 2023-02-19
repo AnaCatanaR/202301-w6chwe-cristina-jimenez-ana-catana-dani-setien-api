@@ -12,7 +12,8 @@
     "prepare": "husky install  && chmod ug+x .husky/*",
     "eslint-audit": "npx eslint --ignore-path .gitignore . --max-warnings 0",
     "test": "jest",
-    "test:dev": "jest --watch"
+    "test:dev": "jest --watch",
+    "test:coverage": "react-scripts test --coverage --watchAll=false"
   },
   "keywords": [],
   "author": "",
@@ -46,5 +47,16 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "morgan": "^1.10.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "/src/index.ts",
+      "!src/index.ts",
+      "!src/mocks/*.ts",
+      "!src/loadEnviroment.ts",
+      "!src/server/startServer.ts",
+      "!src/database/connectDatabase.ts"
+    ]
   }
 }

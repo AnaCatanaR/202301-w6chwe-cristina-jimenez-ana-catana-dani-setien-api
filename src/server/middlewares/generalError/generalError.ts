@@ -1,6 +1,8 @@
-import debug from "debug";
+import createDebug from "debug";
 import { type Request, type Response, type NextFunction } from "express";
 import { type CustomError } from "../../../CustomError/CustomError.js";
+
+const debug = createDebug("robots:generalError");
 
 const generalError = (
   error: CustomError,

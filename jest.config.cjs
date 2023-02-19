@@ -4,4 +4,13 @@ module.exports = {
   testEnvironment: "node",
   testMatch: ["**/src/**/*.test.ts"],
   resolver: "jest-ts-webcompat-resolver",
+  collectCoverageFrom: [
+    "src/**/*.ts",
+    "/src/index.ts",
+    "!src/index.ts",
+    "!src/mocks/*.ts",
+    "!src/loadEnviroment.ts",
+    "!src/server/startServer.ts",
+    "!src/database/connectDatabase.ts",
+  ],
 };

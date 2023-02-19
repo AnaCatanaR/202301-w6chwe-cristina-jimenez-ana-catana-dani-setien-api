@@ -6,14 +6,7 @@ import { notFoundError } from "./middlewares/errorMiddlewares.js";
 import generalError from "./middlewares/generalError/generalError.js";
 import cors from "cors";
 
-const corsOptions = {
-  origin: [
-    "https://202301-w6chwe-cristina-jimenez-ana-ca.netlify.app/",
-    "http://localhost:3000",
-    "http://localhost:3001",
-  ],
-};
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(morgan("dev"));
 app.use(express.json());

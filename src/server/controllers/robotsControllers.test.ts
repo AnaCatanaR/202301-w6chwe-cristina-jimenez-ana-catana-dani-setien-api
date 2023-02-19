@@ -6,7 +6,7 @@ import {
   mockResponse,
   mockStatus,
 } from "../../mocks/robotsMocks";
-import getRobots from "./robotsController";
+import { getRobots } from "./robotsController";
 
 describe("Given the getRobots controller", () => {
   describe("When it receives a reponse object", () => {

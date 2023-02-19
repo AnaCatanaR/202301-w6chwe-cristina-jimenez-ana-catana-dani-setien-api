@@ -5,7 +5,6 @@ export interface Attributes {
 }
 
 export interface RobotStructure {
-  id: string;
   name: string;
   image: string;
   attributes: Attributes;

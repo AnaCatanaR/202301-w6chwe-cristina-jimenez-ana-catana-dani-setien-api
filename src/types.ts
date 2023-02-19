@@ -11,4 +11,10 @@ export interface RobotStructure {
   attributes: Attributes;
 }
 
+export interface RobotDataStructure {
+  name: string;
+  image: string;
+  attributes: Attributes;
+}
+
 export type Robots = RobotStructure[];

@@ -6,7 +6,7 @@ import connectDatabase from "./database/connectDatabase.js";
 import createDebug from "debug";
 import chalk from "chalk";
 
-const debug = createDebug(":robots");
+const debug = createDebug("robots:");
 
 const port = process.env.PORT ?? 4001;
 

@@ -1,4 +1,4 @@
-import { type Response } from "express";
+import { type Request, type Response } from "express";
 import { Robot } from "../../database/models/robotSchema";
 import {
   mockNext,
@@ -6,7 +6,19 @@ import {
   mockResponse,
   mockStatus,
 } from "../../mocks/robotsMocks";
-import { getRobots } from "./robotsController";
+import { getRobots, getRobotById } from "./robotsController";
+import { type RobotStructure } from "../../types";
+
+const mockRobot: RobotStructure = {
+  id: "4",
+  name: "C3PO",
+  image: "",
+  attributes: {
+    speed: 1,
+    resistance: 1,
+    creationDate: "2018-01-01",
+  },
+};
 
 describe("Given the getRobots controller", () => {
   describe("When it receives a reponse object", () => {
@@ -35,6 +47,32 @@ describe("Given the getRobots controller", () => {
       await getRobots(mockRequest, mockResponse as Response, mockNext);
 
       expect(mockJson).toHaveBeenCalledWith(expectedEmptyObject);
+    });
+  });
+});
+
+describe("Given the getRobotsById controller", () => {
+  describe("When it receives a request", () => {
+    test("Then it should call its status method with a 200 code", async () => {
+      const mockResponse = {
+        status: jest.fn().mockReturnThis(),
+      } as Partial<Response>;
+
+      const mockRequest: Partial<Request> = {
+        params: { id: `${mockRobot.id}` },
+      };
+
+      const expectedStatusCode = 200;
+
+      Robot.findById = jest.fn().mockReturnValue(mockRobot);
+
+      await getRobotById(
+        mockRequest as Request,
+        mockResponse as Response,
+        mockNext
+      );
+
+      expect(mockResponse.status).toHaveBeenLastCalledWith(expectedStatusCode);
     });
   });
 });

@@ -7,7 +7,7 @@ import {
   mockStatus,
 } from "../../mocks/robotsMocks";
 import { type RobotStructure } from "../../types";
-import { createRobot, getRobots } from "./robotsController";
+import { createRobot, deleteRobotById, getRobots } from "./robotsController";
 
 describe("Given the getRobots controller", () => {
   describe("When it receives a reponse object", () => {
@@ -64,6 +64,66 @@ describe("Given the createRobot controller", () => {
       );
 
       expect(mockStatus).toBeCalledWith(expectedStatusCode);
+    });
+
+    test("Then it should call its json method with property newRobot assigned to an empty object", async () => {
+      const mockStatus = jest.fn().mockReturnThis();
+      const mockJson = jest.fn().mockResolvedValue({});
+      const mockRequest = {
+        body: {
+          name: "",
+          image: "",
+          attributes: { creationDate: "", speed: 1, resistance: 1 },
+        },
+      };
+      const mockResponse: Partial<Response> = {
+        status: mockStatus,
+        json: mockJson,
+      };
+      const expectedEmptyObject = { newRobot: {} };
+      Robot.create = jest.fn().mockReturnValue({});
+
+      await createRobot(
+        mockRequest as Request<
+          Record<string, unknown>,
+          Record<string, unknown>,
+          RobotStructure
+        >,
+        mockResponse as Response,
+        mockNext
+      );
+
+      expect(mockJson).toHaveBeenCalledWith(expectedEmptyObject);
+    });
+  });
+});
+
+describe("Given a deleteRobotById function", () => {
+  describe("When it receives a request to delete a particular robot", () => {
+    test("Then it should call its status method with 200", async () => {
+      const expectedReturnedStatus = 200;
+      const mockedRobotId = "hamena";
+
+      const mockedRequest = {
+        params: { robotId: mockedRobotId },
+      } as Partial<Request>;
+
+      const mockedResponse = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockResolvedValue(expectedReturnedStatus),
+      } as Partial<Response>;
+
+      Robot.findByIdAndDelete = jest.fn().mockImplementationOnce(() => ({
+        exec: jest.fn().mockReturnValue(mockedRobotId),
+      }));
+
+      await deleteRobotById(
+        mockedRequest as Request,
+        mockedResponse as Response,
+        mockNext
+      );
+
+      expect(mockResponse.status).toHaveBeenCalledWith(expectedReturnedStatus);
     });
 
     test("Then it should call its json method with property newRobot assigned to an empty object", async () => {

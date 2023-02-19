@@ -81,13 +81,12 @@ export const createRobot = async (
 };
 
 export const deleteRobotById = async (
-  req: Request<Record<string, unknown>, Record<string, unknown>, string>,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
     const { idRobot } = req.params;
-    debug(req.params);
 
     const robot = await Robot.findByIdAndDelete(idRobot);
 

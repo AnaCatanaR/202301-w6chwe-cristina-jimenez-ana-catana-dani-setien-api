@@ -13,8 +13,8 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/robots", robotsRouter);
-app.use("/users", auth, usersRouter);
+app.use("/robots", auth, robotsRouter);
+app.use("/users", usersRouter);
 
 app.use(notFoundError);
 app.use(generalError);

@@ -20,6 +20,8 @@ export interface RobotDataStructure {
   attributes: Attributes;
 }
 
+export type Robots = RobotStructure[];
+
 export interface CustomJwtPayload extends JwtPayload {
   sub: string;
 }
@@ -27,4 +29,10 @@ export interface CustomJwtPayload extends JwtPayload {
 export interface CustomRequest extends Request {
   ownerId: string;
 }
-export type Robots = RobotStructure[];
+
+export interface CustomRequest extends Request {
+  body: {
+    username: string;
+    password: string;
+  };
+}

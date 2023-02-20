@@ -118,6 +118,7 @@ describe("Given the createRobot controller", () => {
           attributes: { creationDate: "", speed: 1, resistance: 1 },
         },
       };
+
       const mockResponse: Partial<Response> = {
         status: mockStatus,
         json: mockJson,

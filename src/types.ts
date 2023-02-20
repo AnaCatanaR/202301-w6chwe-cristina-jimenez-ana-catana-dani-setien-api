@@ -1,3 +1,5 @@
+import { type Request } from "express";
+
 export interface Attributes {
   speed: number;
   resistance: number;
@@ -18,3 +20,10 @@ export interface RobotDataStructure {
 }
 
 export type Robots = RobotStructure[];
+
+export interface CustomRequest extends Request {
+  body: {
+    username: string;
+    password: string;
+  };
+}

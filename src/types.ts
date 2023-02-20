@@ -1,3 +1,6 @@
+import { type Request } from "express";
+import { type JwtPayload } from "jsonwebtoken";
+
 export interface Attributes {
   speed: number;
   resistance: number;
@@ -17,4 +20,11 @@ export interface RobotDataStructure {
   attributes: Attributes;
 }
 
+export interface CustomJwtPayload extends JwtPayload {
+  sub: string;
+}
+
+export interface CustomRequest extends Request {
+  ownerId: string;
+}
 export type Robots = RobotStructure[];

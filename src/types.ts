@@ -14,6 +14,20 @@ export interface RobotStructure {
   attributes: Attributes;
 }
 
+export interface RobotFileStructure {
+  id: string;
+  name: string;
+  image: any;
+  attributes: Attributes;
+}
+
+export interface RobotFileRequest extends Request {
+  name: string;
+  speed: number;
+  resistance: number;
+  creationDate: string;
+}
+
 export interface RobotDataStructure {
   name: string;
   image: string;

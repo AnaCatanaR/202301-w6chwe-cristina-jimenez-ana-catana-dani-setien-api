@@ -22,6 +22,7 @@ export const getRobots = async (
       500,
       "Sorry, we couldn't retreive robots"
     );
+
     next(getRobotsError);
   }
 };

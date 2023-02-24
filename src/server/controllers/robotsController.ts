@@ -2,7 +2,7 @@ import { type NextFunction } from "connect";
 import { type Request, type Response } from "express";
 import { CustomError } from "../../CustomError/CustomError.js";
 import { Robot } from "../../database/models/robotSchema.js";
-import { type RobotStructure } from "../../types.js";
+import { type RobotFileRequest, type RobotStructure } from "../../types.js";
 import createDebug from "debug";
 
 const debug = createDebug("robots:controller");
@@ -51,21 +51,18 @@ export const createRobot = async (
   req: Request<
     Record<string, unknown>,
     Record<string, unknown>,
-    RobotStructure
+    RobotFileRequest
   >,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const {
-      name,
-      image,
-      attributes: { creationDate, speed, resistance },
-    } = req.body;
+    const { name, creationDate, speed, resistance } = req.body;
+    const imageName = req.file?.originalname;
 
     const newRobot = await Robot.create({
       name,
-      image,
+      image: imageName,
       attributes: { creationDate, speed, resistance },
     });
 
